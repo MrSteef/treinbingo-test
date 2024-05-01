@@ -4,9 +4,7 @@ let longitude;
 let autoRefreshStation = false;
 
 options = {
-  enableHighAccuracy: false,
-  timeout: 100,
-  maximumAge: 0,
+  enableHighAccuracy: true
 };
 
 function toggleautorefresh() {
@@ -45,6 +43,7 @@ function stop() {
 }
 
 function success(pos) {
+  console.log('geolocation updated')
   latitude = pos.coords.latitude;
   longitude = pos.coords.longitude;
   document.getElementById(
