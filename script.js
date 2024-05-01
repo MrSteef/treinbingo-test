@@ -1,12 +1,20 @@
 let id;
 let latitude;
 let longitude;
+let autoRefreshStation = false;
 
 options = {
   enableHighAccuracy: false,
   timeout: 100,
   maximumAge: 0,
 };
+
+function toggleautorefresh() {
+  autoRefreshStation = !autoRefreshStation;
+  document.getElementById("autorefresh").textContent = autoRefreshStation
+    ? "disable auto refresh"
+    : "enable auto refresh";
+}
 
 function savekey() {
   let keyToSave = document.getElementById("apikey").value;
@@ -42,6 +50,9 @@ function success(pos) {
   document.getElementById(
     "location"
   ).textContent = `${pos.coords.latitude}, ${pos.coords.longitude}`;
+  if (autoRefreshStation) {
+    throttledrefresh()
+  }
   document.getElementById("error").textContent = "";
 }
 
@@ -49,6 +60,10 @@ function error(err) {
   console.error(err);
   document.getElementById("error").textContent = err.message;
 }
+
+const throttledrefresh = throttle(() => {
+  refresh()
+})
 
 function refresh() {
   if (
@@ -76,6 +91,7 @@ function refresh() {
       const message = generateMessage(station);
       document.getElementById("station-name").innerHTML = message;
       document.getElementById("error").textContent = "";
+      console.log('station refreshed')
     })
     .catch((err) => {
       error(err);
@@ -99,4 +115,31 @@ naderen radius: ${station.naderenRadius}`;
 station afstand: ${station.distance}<br>
 station radius: ${station.radius}<br>
 naderen radius: ${station.naderenRadius}`;
+}
+
+
+function throttle(cb, delay = 1000) {
+  let shouldWait = false
+  let waitingArgs
+  const timeoutFunc = () => {
+    if (waitingArgs == null) {
+      shouldWait = false
+    } else {
+      cb(...waitingArgs)
+      waitingArgs = null
+      setTimeout(timeoutFunc, delay)
+    }
+  }
+
+  return (...args) => {
+    if (shouldWait) {
+      waitingArgs = args
+      return
+    }
+
+    cb(...args)
+    shouldWait = true
+
+    setTimeout(timeoutFunc, delay)
+  }
 }
