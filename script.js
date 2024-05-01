@@ -51,8 +51,11 @@ function error(err) {
 }
 
 function refresh() {
+  if (latitude == null || latitude == undefined || longitude == null || longitude == undefined) {
+    return
+  }
   fetch(
-    "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations/nearest?lat=52.2131511&lng=6.8991346&limit=1",
+    `https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations/nearest?lat=${latitude}&lng=${longitude}&limit=1`,
     {
       method: "GET",
       // Request headers
