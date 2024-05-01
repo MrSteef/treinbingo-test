@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="script.js"></script>
+</head>
+<body>
+  <input type="text" name="apikey" id="apikey" placeholder="api key">
+  <button onclick="savekey()">api key opslaan</button>
+  <button onclick="loadkey()">api key laden</button>
+  <br>
+  <button onclick="start()">start locatie</button>
+  <button onclick="stop()">stop locatie</button>
+  <p>Huidige locatie: <span id="location"></span></p>
+  <button onclick="refresh()">refresh station</button>
+  <p>Huidig station: <span id="station-name"></span></p>
+  <p id="error"></p>
+</body>
+</html>
