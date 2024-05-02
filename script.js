@@ -91,6 +91,8 @@ function refresh() {
       document.getElementById("station-name").innerHTML = message;
       document.getElementById("error").textContent = "";
       console.log('station refreshed')
+      refreshProvincie()
+      console.log('provincie refreshed')
     })
     .catch((err) => {
       error(err);
@@ -141,4 +143,10 @@ function throttle(cb, delay = 1000) {
 
     setTimeout(timeoutFunc, delay)
   }
+}
+
+
+function refreshProvincie() {
+  
+  d3.geoContains(provincie, [longitude, latitude])
 }
