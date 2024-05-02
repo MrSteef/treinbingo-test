@@ -1,4 +1,4 @@
-const data = JSON.parse({
+const data = JSON.parse(`{
 	"type" : "FeatureCollection",
 	"name" : "GRS_1000_PROV_NL_V",
 	"crs" : {
@@ -7488,4 +7488,4 @@ const data = JSON.parse({
 			}
 		}
 	]
-})
+}`)
