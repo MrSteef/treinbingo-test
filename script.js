@@ -93,7 +93,7 @@ function refresh() {
       document.getElementById("station-name").innerHTML = message;
       document.getElementById("error").textContent = "";
       console.log('station refreshed')
-      refreshProvincie()
+      document.getElementById("station-name").innerHTML = getProvincie();
       console.log('provincie refreshed')
     })
     .catch((err) => {
@@ -148,13 +148,10 @@ function throttle(cb, delay = 1000) {
 }
 
 
-function refreshProvincie() {
-  // for provincie in
-  // d3.geoContains(provincie, [longitude, latitude])
-
+function getProvincie() {
   data.features.forEach((provincie) => {
     if (d3.geoContains(provincie, [longitude, latitude]) == true) {
-        console.log(provincie.properties.PROVINCIENAAM);
+        return provincie.properties.PROVINCIENAAM;
     }
 })
 }
