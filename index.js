@@ -7676,6 +7676,8 @@ console.log(latitude, longitude)
 // for (var provincie in data.features)
 //     console.log(d3.geoContains(provincie, [longitude, latitude]));
 
+
+
 data.features.forEach((provincie) => {
         if (d3.geoContains(provincie, [longitude, latitude]) == false) {
             console.log(provincie.properties.PROVINCIENAAM);
