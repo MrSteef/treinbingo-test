@@ -1,9 +1,11 @@
+import * as d3 from "d3";
+
 let id;
 let latitude;
 let longitude;
 let autoRefreshStation = false;
 
-options = {
+const options = {
   enableHighAccuracy: true
 };
 
@@ -147,6 +149,6 @@ function throttle(cb, delay = 1000) {
 
 
 function refreshProvincie() {
-  
+  // for provincie in
   d3.geoContains(provincie, [longitude, latitude])
 }
