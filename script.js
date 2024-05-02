@@ -150,5 +150,11 @@ function throttle(cb, delay = 1000) {
 
 function refreshProvincie() {
   // for provincie in
-  d3.geoContains(provincie, [longitude, latitude])
+  // d3.geoContains(provincie, [longitude, latitude])
+
+  data.features.forEach((provincie) => {
+    if (d3.geoContains(provincie, [longitude, latitude]) == true) {
+        console.log(provincie.properties.PROVINCIENAAM);
+    }
+})
 }
