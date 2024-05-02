@@ -151,9 +151,9 @@ function throttle(cb, delay = 1000) {
 function getProvincie() {
   provincie = ""
   data.features.forEach((provincie) => {
-    if (d3.geoContains(provincie, [longitude, latitude]) == true) {
-        provincie = provincie.properties.PROVINCIENAAM;
-    }
+      if (d3.geoContains(provincie, [longitude, latitude]) == true) {
+          provincie = provincie.properties.PROVINCIENAAM;
+      }
+    })
   return provincie
-})
 }
